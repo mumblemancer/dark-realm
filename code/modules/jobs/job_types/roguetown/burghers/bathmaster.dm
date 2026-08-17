@@ -1,11 +1,11 @@
 /datum/job/roguetown/bathmaster
-	title = "Bathmaster"
+	title = "Nitemaster"
 	flag = BATHMASTER
 	department_flag = BURGHERS
 	faction = "Station"
 	total_positions = 1
 	spawn_positions = 1
-	f_title = "Bathmatron"
+	f_title = "Nitemistress"
 	forbidden_races = list(RACES_DESPISED)
 	tutorial = "You are renting out the bathhouse in a joint operation with the Innkeep. You provide security for the bathwenches and help them to find work--when you're not being a trouble-making rake that others suffer to tolerate."
 	allowed_sexes = list(MALE, FEMALE)
