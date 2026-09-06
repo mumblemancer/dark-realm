@@ -44,16 +44,23 @@
 	#define SOURCE_ASSASSIN "source_assassin"
 
 /datum/antagonist/assassin/on_gain()
+	// CMUSIC
 	owner.current.cmode_music = list('sound/music/cmode/antag/combat_deadlyshadows.ogg') // placeholder until a violent way is released
+	// SET PATRON
+	if(!istype(owner.current.patron, /datum/patron/inhumen/graggar))
+		owner.current.set_patron(/datum/patron/inhumen/graggar)
+	// SET DAGGERS TO EXPERT
+	owner.current.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_EXPERT, TRUE)
+	// GIVE SPECIAL ITEMS
+	var/evil_mask = /obj/item/clothing/mask/rogue/sack
+	owner.special_items["Sack Mask"] = evil_mask
+	// SPELLS, VIRTUES, AND EQUIPMENT, ALL GO HERE.
 	for(var/assassin_trait in traits_assassin)
 		if(!HAS_TRAIT(owner.current, assassin_trait))
 			ADD_TRAIT(owner.current, assassin_trait, SOURCE_ASSASSIN)
-	// as much as i fucking dread the numbersjak.
-	owner.current.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_EXPERT, TRUE)
-	var/evil_mask = /obj/item/clothing/mask/rogue/sack
-	owner.special_items["Sack Mask"] = evil_mask
 	var/datum/action/cooldown/spell/assassin/get_dagger/A = new
 	A.Grant(owner.current)
+
 	// temporary to see how this goes. i think it might help w/ how they need to toggle a lot of their features.
 	apply_virtue(owner.current, new /datum/virtue/combat/guarded)
 	// prevents ear-explosions & THE TEXTWALL. hopefully.
